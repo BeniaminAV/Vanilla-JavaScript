@@ -5,65 +5,51 @@ let stocks = {
   toppings: ["chocolate", "peanuts"],
 }
 
-function iceCreamShop() {
-  let random = Math.random()
-
-  var OnOff = 0.5
-
-  if (random > OnOff) {
-    return true
-  } else {
-    return false
-  }
-}
-
-iceCreamShop()
+let shop_on = true
 
 const time = (ms) => {
   return new Promise((resolve, reject) => {
-    if (iceCreamShop()) {
+    if (shop_on) {
       setTimeout(resolve, ms)
     } else {
-      reject("Shop is Closed!")
+      reject(console.log("Something is wrong"))
     }
   })
 }
 
 async function Kitchen() {
   try {
-    await time(1000)
-    console.log("Order placed")
+    await time(2000)
+    console.log("The order is placed")
 
     await time(2000)
-    console.log(
-      `Fruit s ${stocks.Fruits[0]}, ${stocks.Fruits[1]} and ${stocks.Fruits[2]} selected`
-    )
+    console.log(`Fruit ${stocks.Fruits[0]} and ${stocks.Fruits[1]} selected!`)
 
     await time(2000)
-    console.log("Fruit has chopped")
+    console.log("Fruit is chopped")
 
     await time(1000)
-    console.log(`Liquid ${stocks.liquid[0]} and ${stocks.liquid[1]} added`)
+    console.log(`Adding ${stocks.liquid[0]} and ${stocks.liquid[1]}`)
 
     await time(1000)
     console.log("Machine has started")
 
     await time(2000)
-    console.log(`Container selected is ${stocks.holder[0]}`)
+    console.log(`Adding ${stocks.holder[1]}`)
 
     await time(3000)
     console.log(
-      `Topping selected is ${stocks.toppings[0]} and ${stocks.toppings[1]}`
+      `Topping s ${stocks.toppings[0]} and ${stocks.toppings[1]} selected`
     )
 
     await time(2000)
     console.log("Serve Ice Cream")
   } catch (error) {
-    console.log("Shop is closed")
+    console.log("Shop is closed, see you tomorow")
   } finally {
     setTimeout(() => {
-      console.log("All it s done")
-    }, 2000)
+      console.log("All it s done!")
+    }, 1500)
   }
 }
 

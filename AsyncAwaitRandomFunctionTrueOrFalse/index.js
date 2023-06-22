@@ -5,66 +5,66 @@ let stocks = {
   toppings: ["chocolate", "peanuts"],
 }
 
-function iceCreamShop() {
-  let random = Math.random()
+let isShopOpen
 
-  var OnOff = 0.5
-
-  if (random > OnOff) {
-    return true
-  } else {
-    return false
+const shop_on = () => {
+  if (isShopOpen !== undefined) {
+    return isShopOpen
   }
+
+  let random = Math.floor(Math.random() * 2)
+  let OnOff = 0.5
+
+  isShopOpen = random > OnOff
+  return isShopOpen
 }
 
-iceCreamShop()
-
-const time = (ms) => {
+const ShopIce = (ms) => {
   return new Promise((resolve, reject) => {
-    if (iceCreamShop()) {
+    if (shop_on()) {
       setTimeout(resolve, ms)
     } else {
-      reject("Shop is Closed!")
+      reject("Something is wrong")
     }
   })
 }
 
-async function Kitchen() {
+const ShopOrder = async () => {
   try {
-    await time(1000)
-    console.log("Order placed")
+    await ShopIce(2000)
+    console.log("Order has started")
 
-    await time(2000)
+    await ShopIce(2000)
     console.log(
-      `Fruit s ${stocks.Fruits[0]}, ${stocks.Fruits[1]} and ${stocks.Fruits[2]} selected`
+      `Fruit s ${stocks.Fruits[0]} and ${stocks.Fruits[1]} has selected`
     )
 
-    await time(2000)
-    console.log("Fruit has chopped")
+    await ShopIce(2000)
+    console.log("Fruit s has chopped")
 
-    await time(1000)
+    await ShopIce(2000)
     console.log(`Liquid ${stocks.liquid[0]} and ${stocks.liquid[1]} added`)
 
-    await time(1000)
+    await ShopIce(2000)
     console.log("Machine has started")
 
-    await time(2000)
-    console.log(`Container selected is ${stocks.holder[0]}`)
+    await ShopIce(2000)
+    console.log(`Cup was selected ${stocks.holder[0]}`)
 
-    await time(3000)
+    await ShopIce(2000)
     console.log(
-      `Topping selected is ${stocks.toppings[0]} and ${stocks.toppings[1]}`
+      `Toppings ${stocks.toppings[0]} and ${stocks.toppings[1]} added`
     )
 
-    await time(2000)
+    await ShopIce(2000)
     console.log("Serve Ice Cream")
   } catch (error) {
-    console.log("Shop is closed")
+    console.log("Shop is Closed!")
   } finally {
     setTimeout(() => {
-      console.log("All it s done")
+      console.log("All it s done , se you tommorow")
     }, 2000)
   }
 }
 
-Kitchen()
+ShopOrder()
